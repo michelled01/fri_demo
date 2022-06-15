@@ -63,28 +63,26 @@ def traceDist(theo_DS, exp_DS):
     diff = theo_DS - exp_DS
     diff_t = np.conj(np.transpose(diff))
     square = np.matmul(diff,diff_t)
-    #sqrt_matrix = 
-
-    #calculate trace(uncomment when sqrt_matrix calculated)
-    #mat = sqrt_matrix
-    #sum = 0
-    #for i in range(len(mat)):
-    #    sum += mat[i][i]
-    #return sum/2
+    sqrt_matrix = sqrtm(square)
+    mat = sqrt_matrix
+    sum = 0
+    for i in range(len(mat)):
+       sum += mat[i][i]
+    return sum/2
+    
     
 
 
-# input in degrees
+# testing fidelity (input in degrees)
 theta = 80*math.pi/180
 phi = 50*math.pi/180
 PS = pure_state(theta,phi)
 #testing experimental
 exp_DS = experimental(5.6, 0.73, 4.6, 0.83, 4.8, 3, 2.4)
-print("Experimental density matrix:\n" + str(exp_DS))
-print(error(fidelity(PS,exp_DS)[0][0]))
+print("error: ", error(fidelity(PS,exp_DS)[0][0]))
 
 #testing trace
-print(str(traceDist(experimental(5.6, 0.73, 4.6, 0.83, 4.8, 3, 2.4), outer_product(PS))))
+print("trace distance: ",str(traceDist(experimental(5.6, 0.73, 4.6, 0.83, 4.8, 3, 2.4), outer_product(PS))))
 
 
 # calculate fidelity and trace distance
