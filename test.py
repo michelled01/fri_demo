@@ -1,6 +1,7 @@
 import cmath
 import numpy as np
 import math
+import scipy
 from scipy.linalg import sqrtm
 
 ### fidelity ###
@@ -58,19 +59,18 @@ def error(f):
     return 1-f
 
 ### trace distance ###
-
 def traceDist(theo_DS, exp_DS):
     diff = theo_DS - exp_DS
     diff_t = np.conj(np.transpose(diff))
     square = np.matmul(diff,diff_t)
     #sqrt_matrix = 
 
-    #calculate trace
-    mat = sqrt_matrix
-    sum = 0
-    for i in range(len(mat)):
-        sum += mat[i][i]
-    return sum
+    #calculate trace(uncomment when sqrt_matrix calculated)
+    #mat = sqrt_matrix
+    #sum = 0
+    #for i in range(len(mat)):
+    #    sum += mat[i][i]
+    #return sum/2
     
 
 
@@ -78,7 +78,7 @@ def traceDist(theo_DS, exp_DS):
 theta = 80*math.pi/180
 phi = 50*math.pi/180
 PS = pure_state(theta,phi)
-#testing(experimental)
+#testing experimental
 exp_DS = experimental(5.6, 0.73, 4.6, 0.83, 4.8, 3, 2.4)
 print("Experimental density matrix:\n" + str(exp_DS))
 print(error(fidelity(PS,exp_DS)[0][0]))
@@ -86,12 +86,8 @@ print(error(fidelity(PS,exp_DS)[0][0]))
 #testing trace
 print(str(traceDist(experimental(5.6, 0.73, 4.6, 0.83, 4.8, 3, 2.4), outer_product(PS))))
 
-# a = pure_state(theta,phi)
-# print(a)
-# b = outer_product(a)
-# print(b)
-# calculate fidelity and trace distance
 
+# calculate fidelity and trace distance
     # fidelity 
         # theoretical
             # get theta and phi 
@@ -110,4 +106,3 @@ print(str(traceDist(experimental(5.6, 0.73, 4.6, 0.83, 4.8, 3, 2.4), outer_produ
         # TD = 0.5*Tr[sqrt((ρ-φ)ᵗ(ρ-φ))] 
         # for subtraction, use the DS's we got from fidelity
         # for square rooting, https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.sqrtm.html
-        
