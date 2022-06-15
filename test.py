@@ -74,8 +74,15 @@ def traceDist(theo_DS, exp_DS):
 
 
 # testing fidelity (input in degrees)
-theta = 80*math.pi/180
-phi = 50*math.pi/180
+print("enter theta: ")
+theta = int(input())
+theta = math.radians(theta)
+print("enter phi: ")
+phi = int(input())
+phi = math.radians(phi)
+
+# theta = 80*math.pi/180
+# phi = 50*math.pi/180
 PS = pure_state(theta,phi)
 #testing experimental
 exp_DS = experimental(5.6, 0.73, 4.6, 0.83, 4.8, 3, 2.4)
