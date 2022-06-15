@@ -69,27 +69,40 @@ def traceDist(theo_DS, exp_DS):
     for i in range(len(mat)):
        sum += mat[i][i]
     return sum/2
-    
+    80
     
 
 
 # testing fidelity (input in degrees)
-print("enter theta: ")
-theta = int(input())
+print("enter preparation theta: ")
+theta = float(input())
 theta = math.radians(theta)
-print("enter phi: ")
-phi = int(input())
+print("enter preparation phi: ")
+phi = float(input())
 phi = math.radians(phi)
 
-# theta = 80*math.pi/180
-# phi = 50*math.pi/180
+print("enter total power: ")
+T_val = float(input())
+print("enter recorded H count: ")
+H_count = float(input()) 
+print("enter recorded V count: ")
+V_count = float(input()) 
+print("enter recorded D count: ")
+D_count = float(input()) 
+print("enter recorded A count: ")
+A_count = float(input()) 
+print("enter recorded R count: ")
+R_count = float(input()) 
+print("enter recorded L count: ")
+L_count = float(input()) 
+
 PS = pure_state(theta,phi)
 #testing experimental
-exp_DS = experimental(5.6, 0.73, 4.6, 0.83, 4.8, 3, 2.4)
+exp_DS = experimental(T_val,D_count,A_count,R_count,L_count,H_count,V_count)
 print("error: ", error(fidelity(PS,exp_DS)[0][0]))
 
 #testing trace
-print("trace distance: ",str(traceDist(experimental(5.6, 0.73, 4.6, 0.83, 4.8, 3, 2.4), outer_product(PS))))
+print("trace distance: ",str(traceDist(experimental(T_val,D_count,A_count,R_count,L_count,H_count,V_count), outer_product(PS))))
 
 
 # calculate fidelity and trace distance
