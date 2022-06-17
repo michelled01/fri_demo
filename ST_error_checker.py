@@ -4,6 +4,26 @@ import math
 import scipy
 from scipy.linalg import sqrtm
 
+''' process for calculating fidelity and trace distance:
+    # fidelity 
+        # theoretical
+            # get theta and phi 
+            # multiply QWP(phi)*HWP(theta)*|H> = pure state
+            # do the outer product = theo density matrix
+        # experimental
+            # get P_i (Total T)
+            # get counts (D,A,R,L,H,V)
+            # calculate expectations (<X> = (D-A)/T, <Y> = (R-L)/T, <Z> = (H-V)/T)
+            # calculate the exp. density matrix
+        # comparison
+            # F = <PS| exp.DS |PS>
+            # ε = 1-F
+        
+    # trace distance
+        # TD = 0.5*Tr[sqrt((ρ-φ)ᵗ(ρ-φ))] 
+        # for subtraction, use the DS's we got from fidelity
+        # for square rooting, https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.sqrtm.html '''
+
 ### fidelity ###
 
 def HWP(theta):
@@ -58,7 +78,9 @@ def fidelity(PS, exp_DS):
 def error(f):
     return 1-f
 
+
 ### trace distance ###
+
 def traceDist(theo_DS, exp_DS):
     diff = theo_DS - exp_DS
     diff_t = np.conj(np.transpose(diff))
@@ -69,10 +91,20 @@ def traceDist(theo_DS, exp_DS):
     for i in range(len(mat)):
        sum += mat[i][i]
     return sum/2
-    80
+
     
+#Testing WebApp
+def run(theta, phi,totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts):
+    PS = pure_state(theta,phi)
+    exp_DS = experimental(totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts)
+    fid = fidelity(PS,exp_DS)[0][0]
+    err = error(fidelity(PS,exp_DS)[0][0])
+    trD = traceDist(experimental(totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts), outer_product(PS))
+    return [err,trD]
 
 
+
+'''
 # testing fidelity (input in degrees)
 print("enter preparation theta: ")
 theta = float(input())
@@ -82,45 +114,26 @@ phi = float(input())
 phi = math.radians(phi)
 
 print("enter total power: ")
-T_val = float(input())
+totalPower = float(input())
 print("enter recorded H count: ")
-H_count = float(input()) 
+Hcounts = float(input()) 
 print("enter recorded V count: ")
-V_count = float(input()) 
+Vcounts = float(input()) 
 print("enter recorded D count: ")
-D_count = float(input()) 
+Dcounts = float(input()) 
 print("enter recorded A count: ")
-A_count = float(input()) 
+Acounts = float(input()) 
 print("enter recorded R count: ")
-R_count = float(input()) 
+Rcounts = float(input()) 
 print("enter recorded L count: ")
-L_count = float(input()) 
+Lcounts = float(input()) 
 
 PS = pure_state(theta,phi)
 #testing experimental
-exp_DS = experimental(T_val,D_count,A_count,R_count,L_count,H_count,V_count)
+exp_DS = experimental(totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts)
 print("error: ", error(fidelity(PS,exp_DS)[0][0]))
 
 #testing trace
-print("trace distance: ",str(traceDist(experimental(T_val,D_count,A_count,R_count,L_count,H_count,V_count), outer_product(PS))))
+print("trace distance: ",str(traceDist(experimental(totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts), outer_product(PS))))
 
-
-# calculate fidelity and trace distance
-    # fidelity 
-        # theoretical
-            # get theta and phi 
-            # multiply QWP(phi)*HWP(theta)*|H> = pure state
-            # do the outer product = theo density matrix
-        # experimental
-            # get P_i (Total T)
-            # get counts (D,A,R,L,H,V)
-            # calculate expectations (<X> = (D-A)/T, <Y> = (R-L)/T, <Z> = (H-V)/T)
-            # calculate the exp. density matrix
-        # comparison
-            # F = <PS| exp.DS |PS>
-            # ε = 1-F
-        
-    # trace distance
-        # TD = 0.5*Tr[sqrt((ρ-φ)ᵗ(ρ-φ))] 
-        # for subtraction, use the DS's we got from fidelity
-        # for square rooting, https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.sqrtm.html
+'''
