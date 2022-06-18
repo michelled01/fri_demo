@@ -94,7 +94,9 @@ def traceDist(theo_DS, exp_DS):
 
     
 #Testing WebApp
-def run(theta, phi,totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts):
+def go(theta, phi,totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts):
+    theta = math.radians(theta)
+    phi = math.radians(phi)
     PS = pure_state(theta,phi)
     exp_DS = experimental(totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts)
     fid = fidelity(PS,exp_DS)[0][0]
@@ -103,8 +105,7 @@ def run(theta, phi,totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts):
     return [err,trD]
 
 
-
-'''
+''' manual testing (outdated):
 # testing fidelity (input in degrees)
 print("enter preparation theta: ")
 theta = float(input())

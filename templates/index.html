@@ -1,42 +1,29 @@
 <html>
-    <label>Enter theta: </label><br>
-    <input type="text" id="theta"><br>
-    <label>Enter phi: </label><br>
-    <input type="text" id="phi"><br>
-    <label>Enter total power: </label><br>
-    <input type="text" id="totalPower"><br><br>
-    <label>Enter H counts: </label><br>
-    <input type="text" id="Hcounts"><br>
-    <label>Enter V counts: </label><br>
-    <input type="text" id="Vcounts"><br>
-    <label>Enter D counts: </label><br>
-    <input type="text" id="Dcounts"><br>
-    <label>Enter A counts: </label><br>
-    <input type="text" id="Acounts"><br>
-    <label>Enter R counts: </label><br>
-    <input type="text" id="Rcounts"><br>
-    <label>Enter L counts: </label><br>
-    <input type="text" id="Lcounts"><br><br>
-
-    <button type="submit" value="submit">Calculate</button>
-    {%if error%}
-    <p>Does this work?? {{error}}</p>
-    {%endif%}
-</html>
-
-<!-- 
-    <html>
     <body>
         <form action="/" method="POST">
-        Weight(Kg)
-        <input type="text" name="weight"><br>
-        Height(Cm)
-        <input type="text" name="height"><br>
+        <label>Enter theta: </label><br>
+        <input type="text" name="theta"><br>
+        <label>Enter phi: </label><br>
+        <input type="text" name="phi"><br>
+        <label>Enter total power: </label><br>
+        <input type="text" name="totalPower"><br><br>
+        <label>Enter H counts: </label><br>
+        <input type="text" name="Hcounts"><br>
+        <label>Enter V counts: </label><br>
+        <input type="text" name="Vcounts"><br>
+        <label>Enter D counts: </label><br>
+        <input type="text" name="Dcounts"><br>
+        <label>Enter A counts: </label><br>
+        <input type="text" name="Acounts"><br>
+        <label>Enter R counts: </label><br>
+        <input type="text" name="Rcounts"><br>
+        <label>Enter L counts: </label><br>
+        <input type="text" name="Lcounts"><br><br>
         <button type="submit" value="submit">Calculate</button>
         </form>
-        {%if bmi%}
-        <p>Your BMI is {{bmi}}</p>
+        {%if res%}
+        <p>Your error(1-fidelity) is {{res[0]}} </p>
+        <p>Your trace distance is {{res[1]}}</p>
         {%endif%}
     </body>
 </html>
--->
