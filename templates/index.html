@@ -1,0 +1,34 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+    </head>
+    <body>
+        <h1>State Tomography Calculator</h1>
+        <form action="/" method="POST">
+        <label,class=.container>Enter theta: </label><br>
+        <input type="text" name="theta"><br>
+        <label>Enter phi: </label><br>
+        <input type="text" name="phi"><br>
+        <label>Enter total power: </label><br>
+        <input type="text" name="totalPower"><br><br>
+        <label>Enter H counts: </label><br>
+        <input type="text" name="Hcounts"><br>
+        <label>Enter V counts: </label><br>
+        <input type="text" name="Vcounts"><br>
+        <label>Enter D counts: </label><br>
+        <input type="text" name="Dcounts"><br>
+        <label>Enter A counts: </label><br>
+        <input type="text" name="Acounts"><br>
+        <label>Enter R counts: </label><br>
+        <input type="text" name="Rcounts"><br>
+        <label>Enter L counts: </label><br>
+        <input type="text" name="Lcounts"><br><br>
+        <button type="submit" value="submit" id="calc">Calculate</button>
+        </form>
+        {%if res%}
+        <h2>Your error(1-fidelity) is {{res[0]}} </h2>
+        <h3>Your trace distance is {{res[1]}}</h3>
+        {%endif%}
+    </body>
+</html>
