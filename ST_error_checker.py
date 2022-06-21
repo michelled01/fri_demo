@@ -69,6 +69,21 @@ def experimental(T,D,A,R,L,H,V):
     #density matrix calc
     return 0.5*(I + expX*X + expY*Y + expZ*Z)
 
+def altExperimental(T1,T2, T3,D,A,R,L,H,V):
+    #calc expectation vals
+    expX = (D-A)/T1
+    expY = (R-L)/T2
+    expZ = (H-V)/T3
+
+    #init matricies
+    I = np.array([[1.0,0.0],[0.0,1.0]])
+    X = np.array([[0.0,1.0],[1.0,0.0]])
+    Y = np.array([[0.0,-1j],[1j,0.0]])
+    Z = np.array([[1.0,0.0],[0.0,-1.0]])
+    
+    #density matrix calc
+    return 0.5*(I + expX*X + expY*Y + expZ*Z)
+
 def fidelity(PS, exp_DS):
     bra = np.conj(np.transpose(PS))
     mid = exp_DS
@@ -104,6 +119,20 @@ def go(theta, phi,totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts):
     trD = traceDist(experimental(totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts), outer_product(PS))
     return [err,trD]
 
+def convertPercentage(res):
+    res[0] = res[0]*100
+    res[1] = res[1]*100
+    return res
+
+def altGo(theta, phi,tp1,tp2,tp3,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts):
+    theta = math.radians(theta)
+    phi = math.radians(phi)
+    PS = pure_state(theta,phi)
+    exp_DS = altExperimental(tp1, tp2, tp3, Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts)
+    fid = fidelity(PS,exp_DS)[0][0]
+    err = error(fidelity(PS,exp_DS)[0][0])
+    trD = traceDist(altExperimental(tp1, tp2, tp3,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts), outer_product(PS))
+    return [err,trD]
 
 ''' manual testing (outdated):
 # testing fidelity (input in degrees)

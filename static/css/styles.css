@@ -32,16 +32,29 @@ body {
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+.leftCon {
+    float: left;
+    margin-left: 350px;
+}
+
+.rightCon {
+    float: right;
+    margin-right:350px;
+}
+
 h1, h2, h3 {
     color: #D66853;
 }
 button {
+    margin-top: 300px;
     border-radius: 5px;
     height: 35px;
     border: 0;
     padding: 0 10px;
     background-color: #D66853;
+    font-size: 15px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
     /* color: #7D11151C4E57; */
 }
   
@@ -54,3 +67,4 @@ body {
     border: 5px;
     padding: 10;
 }
+

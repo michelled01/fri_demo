@@ -1,23 +1,18 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
-        <!--<nav>
+        <nav>
             <h2>Operations</h2>
             <ul>
-              <li class="current"><a href="./index.html">Error</a></li>
-              <li><a href="./density.html">Density</a></li>
+              <li><a href="./index.html">Error</a></li>
+              <li class="current"><a href="./density.html">Density</a></li>
             </ul>
-          </nav>-->
-        
+          </nav>
     </head>
     <body>
         <h1>State Tomography Calculator</h1>
         <form action="/" method="POST">
         <div class="leftCon">
-        <label>Enter theta: </label><br>
-        <input type="text" name="theta"><br>
-        <label>Enter phi: </label><br>
-        <input type="text" name="phi"><br>
         <label>Enter total power (H/V): </label><br>
         <input type="text" name="totalPower3"><br>
         <label>Enter total power (D/A): </label><br>
