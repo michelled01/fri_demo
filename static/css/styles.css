@@ -1,24 +1,3 @@
-/* .liner {
-    display: flex;
-    align-items: flex-start;
-    text-align: left;
-  
-} */
-
-/* &:after {
-    content: '';
-    flex-grow: 1;
-    height: 1px;
-    background: #D66853;
-    min-width: 20px;
-    margin: auto;
-  }
-
-&:after {
-    margin-left: 20px;
-} */
-  
-  
 body {
     padding: 50px;
     background-color: #11151C;
@@ -63,8 +42,27 @@ body {
     text-align: center;
 }
 
-#calc {
+.calc {
     border: 5px;
     padding: 10;
 }
 
+/* .liner {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+  
+} */
+
+/* &:after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background: #D66853;
+    min-width: 20px;
+    margin: auto;
+  }
+
+&:after {
+    margin-left: 20px;
+} */

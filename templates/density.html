@@ -1,46 +1,38 @@
 <html>
     <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
-        <nav>
-            <h2>Operations</h2>
-            <ul>
-              <li><a href="./index.html">Error</a></li>
-              <li class="current"><a href="./density.html">Density</a></li>
-            </ul>
-          </nav>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
     </head>
     <body>
-        <h1>State Tomography Calculator</h1>
-        <form action="/" method="POST">
-        <div class="leftCon">
+      <h1>State Tomography Density Matrix Calculator</h1>
+      <form action="/density.html" method="POST">
+      <div class="leftCon">
         <label>Enter total power (H/V): </label><br>
         <input type="text" name="totalPower3"><br>
         <label>Enter total power (D/A): </label><br>
         <input type="text" name="totalPower1"><br>
         <label>Enter total power (R/L): </label><br>
         <input type="text" name="totalPower2"><br><br>
-        </div>
+      </div>
 
-        <div class="rightCon">
-        <label>Enter H counts: </label><br>
-        <input type="text" name="Hcounts"><br>
-        <label>Enter V counts: </label><br>
-        <input type="text" name="Vcounts"><br>
-        <label>Enter D counts: </label><br>
-        <input type="text" name="Dcounts"><br>
-        <label>Enter A counts: </label><br>
-        <input type="text" name="Acounts"><br>
-        <label>Enter R counts: </label><br>
-        <input type="text" name="Rcounts"><br>
-        <label>Enter L counts: </label><br>
-        <input type="text" name="Lcounts"><br><br>
-        </div>
-        <button type="submit" value="submit" id="calc">Calculate</button>
-        </form>
-        {%if res%}
-        <h2>Results</h2>
-        <h3>Error(1-fidelity) is {{res[0]}} </h3>
-        <h3>Trace distance is {{res[1]}}</h3>
-        {%endif%}
+      <div class="rightCon">
+          <label>Enter H counts: </label><br>
+          <input type="text" name="Hcounts"><br>
+          <label>Enter V counts: </label><br>
+          <input type="text" name="Vcounts"><br>
+          <label>Enter D counts: </label><br>
+          <input type="text" name="Dcounts"><br>
+          <label>Enter A counts: </label><br>
+          <input type="text" name="Acounts"><br>
+          <label>Enter R counts: </label><br>
+          <input type="text" name="Rcounts"><br>
+          <label>Enter L counts: </label><br>
+          <input type="text" name="Lcounts"><br><br>
+      </div>
+      <button type="submit" value="submit" class="calc">Calculate</button>
+      </form>
+      {%if check%}
+      <h2>Results</h2>
+      <h3>Your matrix is:<br> {{arr[0]}}<br>{{arr[1]}}</h3>
+      {%endif%}
     </body>
 </html>
