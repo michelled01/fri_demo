@@ -6,9 +6,8 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET']) # for inputs and outputs
 
 # TODO:
-# Add error messages
-# Add css
-# Get verified by using other group's inputs
+# Cleanup output values
+# Calculate eigenvalues of DM (seeing negative eigenvalues is not good)
 
 def calc():
     res = []
@@ -28,3 +27,4 @@ def calc():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
