@@ -8,6 +8,8 @@ app = Flask(__name__)
 # TODO:
 # Cleanup output values
 # Calculate eigenvalues of DM (seeing negative eigenvalues is not good)
+#does this work?
+
 
 def calc():
     res = []
