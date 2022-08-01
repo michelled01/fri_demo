@@ -122,6 +122,16 @@ def go(theta, phi,totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts):
 
 
 ''' manual testing: 
+theta=80
+phi=50
+total power = 5.6 µW
+H = 3.2 
+V = 2.574
+D = 0.654
+A = 4.9
+R = 1
+L = 4.52
+
 # testing fidelity (input in degrees)
 print("enter preparation theta: ")
 theta = float(input())
