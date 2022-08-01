@@ -3,13 +3,7 @@ from ST_error_checker import go
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST', 'GET']) # for inputs and outputs
-
-# TODO:
-# Cleanup output values
-# Calculate eigenvalues of DM (seeing negative eigenvalues is not good)
-#does this work?
-
+@app.route('/', methods=['POST', 'GET'])
 
 def calc():
     res = []

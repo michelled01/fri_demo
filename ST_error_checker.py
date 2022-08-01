@@ -3,6 +3,7 @@ import numpy as np
 import math
 import scipy
 from scipy.linalg import sqrtm
+from numpy.linalg import eig
 
 ''' process for calculating fidelity and trace distance:
     # fidelity 
@@ -92,20 +93,35 @@ def traceDist(theo_DS, exp_DS):
        sum += mat[i][i]
     return sum/2
 
-    
+### eigenvalue check ###
+def get_eigs(theo_DS):
+    return eig(theo_DS)
+
 #Testing WebApp
 def go(theta, phi,totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts):
-    theta = math.radians(theta)
-    phi = math.radians(phi)
-    PS = pure_state(theta,phi)
+    PS = pure_state(math.radians(theta),math.radians(phi))
+    theo_DS = outer_product(PS)
     exp_DS = experimental(totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts)
-    fid = fidelity(PS,exp_DS)[0][0]
+
+    e_value,e_vector = get_eigs(theo_DS) # experimental matrix value imprecise
     err = error(fidelity(PS,exp_DS)[0][0])
-    trD = traceDist(experimental(totalPower,Dcounts,Acounts,Rcounts,Lcounts,Hcounts,Vcounts), outer_product(PS))
-    return [err,trD]
+    trD = traceDist(exp_DS, theo_DS)
+    
+    # formatting
+    e_value[0] = '%.3f'%(e_value[0])
+    e_value[1] = '%.3f'%(e_value[1])
+    a = str(e_value[0])
+    a = a.strip('(')
+    a = a.strip(')')
+    b = str(e_value[1])
+    b = b.strip('(')
+    b = b.strip(')')
+    err = '%.3f'%(err)
+    trD = '%.3f'%(trD)    
+    return [a,b, err, trD]
 
 
-''' manual testing (outdated):
+''' manual testing: 
 # testing fidelity (input in degrees)
 print("enter preparation theta: ")
 theta = float(input())

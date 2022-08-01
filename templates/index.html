@@ -27,8 +27,10 @@
         <button type="submit" value="submit" id="calc">Calculate</button>
         </form>
         {%if res%}
-        <h2>Your error(1-fidelity) is {{res[0]}} </h2>
-        <h3>Your trace distance is {{res[1]}}</h3>
+        <h2>Eigenvalues are {{res[0]}},{{res[1]}}</h2>
+        <h2>Your error(1-fidelity) is {{res[2]}} </h2>
+        <h2>Your trace distance is {{res[3]}}</h2>
+
         {%endif%}
     </body>
 </html>
